@@ -1,12 +1,14 @@
 export type PaypackConfig = {
     client_id: string;
     client_secret: string;
-}
+};
 
 export type PaypackParams = {
     amount: number;
     number: string;
-}
+    environment?: "development" | "production";
+    idempotencyKey?: string;
+};
 
 export type PaypackFilters = {
     limit?: number;
@@ -15,12 +17,12 @@ export type PaypackFilters = {
     to?: string;
     kind?: string;
     client?: number;
-}
+};
 
 export type PaypackEventsFilters = PaypackFilters & {
     ref?: string;
     status?: string;
-}
+};
 
 export type PaypackTransaction = {
     ref: string;
@@ -29,7 +31,7 @@ export type PaypackTransaction = {
     kind: string;
     provider: string;
     created_at: string;
-}
+};
 
 export type PaypackRawTransaction = {
     ref: string;
@@ -42,7 +44,7 @@ export type PaypackRawTransaction = {
     metadata: any;
     merchant: string;
     timestamp: string;
-}
+};
 
 export type PaypackTransactionEvent = {
     ref: string;
@@ -57,14 +59,14 @@ export type PaypackTransactionEvent = {
     metadata: any;
     created_at: string;
     processed_at: string;
-}
+};
 
 export type PaypackEvent = {
     event_id: string;
     event_kind: string;
     created_at: string;
     data: PaypackTransactionEvent;
-}
+};
 
 export type PaypackMerchant = {
     id: string;
@@ -76,7 +78,7 @@ export type PaypackMerchant = {
     mtn_balance: number;
     airtel_balance: number;
     balance: number;
-}
+};
 
 export type PaypackTransactionsResponse = {
     data: {
@@ -87,8 +89,8 @@ export type PaypackTransactionsResponse = {
         fee: number;
         total: number;
         transactions: PaypackRawTransaction[];
-    },
-}
+    };
+};
 
 export type PaypackEventsResponse = {
     data: {
@@ -96,8 +98,8 @@ export type PaypackEventsResponse = {
         limit: number;
         total: number;
         transactions: PaypackEvent[];
-    }
-}
+    };
+};
 
 export type PaypackTransactionResponse = {
     data: PaypackRawTransaction;
@@ -109,11 +111,11 @@ export type PaypackProfileResponse = {
 
 export type PaypackCashinResponse = {
     data: PaypackTransaction;
-}
+};
 
 export type PaypackCashoutResponse = {
     data: PaypackTransaction;
-}
+};
 
 export class Paypack {
     constructor(config?: PaypackConfig);
