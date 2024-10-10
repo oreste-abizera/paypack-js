@@ -51,6 +51,7 @@ paypack.cashin({
   number: "07xxxxxxx",
   amount: 100,
   environment: "development/production",
+  idempotencyKey: "unique-request-id-123" // optional
 })
   .then((response) => {
     console.log(response.data);
@@ -62,6 +63,7 @@ paypack.cashin({
 
 <b> Warning : </b> <i>"amount"</i> must be of type number.\
 <b> Note : </b> <i>"environment"</i> is an optional parameter corresponding to a mode of operation of your registerd webhook.
+<b> Note : </b> <i>"idempotencyKey"</i> is an optional parameter that helps prevent duplicate transactions by ensuring the same operation isn't processed multiple times.
 
 ##
 
@@ -74,6 +76,7 @@ paypack.cashout({
   number: "07xxxxxxx",
   amount: 100,
   environment: "development/production",
+  idempotencyKey: "unique-request-id-123" // optional
 })
   .then((res) => {
     console.log(res.data);
@@ -85,6 +88,7 @@ paypack.cashout({
 
 <b> Warning : </b> <i>"amount"</i> must be of type number.\
 <b> Note : </b> <i>"environment"</i> is an optional parameter corresponding to a mode of operation of your registerd webhook.
+<b> Note : </b> <i>"idempotencyKey"</i> is an optional parameter that helps prevent duplicate transactions by ensuring the same operation isn't processed multiple times.
 
 ##
 
