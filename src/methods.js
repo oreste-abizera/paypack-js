@@ -73,16 +73,20 @@ async function cashin(params) {
         amount = new Error("Property 'amount' is required to cashin"),
         number = new Error("Property 'number' is required to cashin"),
         environment = null,
+        idempotencyKey = null,
       } = params;
 
       let headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/json',
+        accept: "application/json",
+        "Content-Type": "application/json",
       };
 
-      if (environment != null) headers['X-Webhook-Mode'] = environment;
+      if (environment != null) headers["X-Webhook-Mode"] = environment;
+      if (idempotencyKey?.length > 0 && typeof idempotencyKey !== "string")
+        headers["Idempotency-Key"] = idempotencyKey;
 
-      if (Number(amount) == NaN) throw new TypeError("Property 'amount' must be a number type");
+      if (Number(amount) == NaN)
+        throw new TypeError("Property 'amount' must be a number type");
       else amount = Number(amount);
 
       if (amount < 100) {
@@ -127,16 +131,20 @@ async function cashout(params) {
         amount = new Error("Property 'amount' is required to cashout"),
         number = new Error("Property 'number' is required to cashout"),
         environment = null,
+        idempotencyKey = null,
       } = params;
 
       let headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/json',
+        accept: "application/json",
+        "Content-Type": "application/json",
       };
 
-      if (environment != null) headers['X-Webhook-Mode'] = environment;
+      if (environment != null) headers["X-Webhook-Mode"] = environment;
+      if (idempotencyKey?.length > 0 && typeof idempotencyKey !== "string")
+        headers["Idempotency-Key"] = idempotencyKey;
 
-      if (Number(amount) == NaN) throw new TypeError("Property 'amount' must be a number type");
+      if (Number(amount) == NaN)
+        throw new TypeError("Property 'amount' must be a number type");
       else amount = Number(amount);
 
       if (amount < 100) {
